@@ -168,7 +168,7 @@ function App() {
           {/* Header & Stats Row */}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             <div className="lg:col-span-1 flex flex-col justify-center">
-              <h2 className="text-3xl font-black text-white tracking-tight mb-2">EcoVision AI</h2>
+              <h2 className="text-3xl font-black text-white tracking-tight mb-2">Bảng Điều Khiển</h2>
               <p className="text-blue-400/80 text-sm">Phân loại rác thải tự động qua hình ảnh</p>
             </div>
 
