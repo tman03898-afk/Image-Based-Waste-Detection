@@ -213,7 +213,7 @@ function App() {
                 <div className="px-6 py-4 border-b border-slate-700/50 flex justify-between items-center bg-black/20">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-                    <h3 className="font-semibold text-white tracking-wide text-sm">CAMERA INPUT (1280x720)</h3>
+                    <h3 className="font-semibold text-white tracking-wide text-sm">CAMERA INPUT</h3>
                   </div>
                   {selectedImage && (
                     <button onClick={resetAll} className="text-xs bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 px-4 py-2 rounded-lg transition-all font-bold tracking-wider uppercase">
