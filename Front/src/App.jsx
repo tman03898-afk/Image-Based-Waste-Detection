@@ -123,7 +123,7 @@ function App() {
             <div>
               <h4 className="text-xs font-bold text-indigo-400/70 uppercase tracking-widest mb-4">Thông tin Model</h4>
               <div className="p-5 rounded-2xl bg-indigo-950/20 border border-indigo-500/10 text-sm leading-relaxed text-slate-400">
-                <p>Dataset phân giải <span className="text-blue-400 font-semibold">1280x720</span> được tối ưu cho <span className="text-white font-medium">hệ thống nhận diện rác thải</span> trong không gian công cộng (Indoor).</p>
+                <p>Phát triển trên kiến trúc <span className="text-blue-400 font-semibold">YOLO26</span> mới nhất của Ultralytics. Dataset phân giải 1280x720 được tối ưu cho <span className="text-white font-medium">hệ thống nhận diện rác thải</span> trong không gian công cộng.</p>
               </div>
             </div>
 
