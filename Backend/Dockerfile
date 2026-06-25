@@ -2,6 +2,15 @@ FROM python:3.9-slim
 
 WORKDIR /code
 
+# Cài đặt các thư viện lõi của Linux để hỗ trợ OpenCV (Sửa lỗi libxcb.so.1)
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0 \
+    libsm6 \
+    libxrender1 \
+    libxext6 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy requirements và cài đặt
 COPY ./requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
