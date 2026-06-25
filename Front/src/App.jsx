@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [originalImage, setOriginalImage] = useState(null);
+  const [showOriginal, setShowOriginal] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
@@ -41,7 +43,11 @@ function App() {
     if (!file.type.startsWith('image/')) return;
     
     const reader = new FileReader();
-    reader.onload = (e) => setSelectedImage(e.target.result);
+    reader.onload = (e) => {
+      setSelectedImage(e.target.result);
+      setOriginalImage(e.target.result);
+      setShowOriginal(false);
+    };
     reader.readAsDataURL(file);
 
     setIsLoading(true);
@@ -86,6 +92,8 @@ function App() {
 
   const resetAll = () => {
     setSelectedImage(null);
+    setOriginalImage(null);
+    setShowOriginal(false);
     setResults(null);
     setStats({ accuracy: 0, processed: 0, scanTime: 0 });
     if (fileInputRef.current) fileInputRef.current.value = '';
@@ -241,11 +249,29 @@ function App() {
                       <p className="text-slate-500 text-sm">Hệ thống AI sẽ phân tích rác thải trong ảnh</p>
                     </div>
                   ) : (
-                    <div className="w-full h-full relative rounded-xl overflow-hidden flex items-center justify-center group">
+                    <div className="w-full h-full relative rounded-xl overflow-hidden flex flex-col items-center justify-center group">
+                      
+                      {results && (
+                        <div className="absolute top-4 left-4 z-40 flex bg-black/60 rounded-lg p-1 border border-slate-700/50 backdrop-blur-md">
+                          <button 
+                            onClick={() => setShowOriginal(false)}
+                            className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${!showOriginal ? 'bg-indigo-500 text-white' : 'text-slate-400 hover:text-white'}`}
+                          >
+                            Kết quả AI
+                          </button>
+                          <button 
+                            onClick={() => setShowOriginal(true)}
+                            className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${showOriginal ? 'bg-indigo-500 text-white' : 'text-slate-400 hover:text-white'}`}
+                          >
+                            Ảnh Gốc
+                          </button>
+                        </div>
+                      )}
+
                       {/* Grid Overlay for Robotic feel */}
                       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-10"></div>
                       
-                      <img src={selectedImage} alt="Uploaded" className="max-w-full max-h-full object-contain relative z-0" />
+                      <img src={showOriginal ? originalImage : selectedImage} alt="Uploaded" className="max-w-full max-h-full object-contain relative z-0 transition-opacity duration-300" />
                       
                       {/* Scanning Animation */}
                       {isLoading && (
