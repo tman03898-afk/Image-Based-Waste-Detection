@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@utility glass-panel {
+  background-color: rgb(30 41 59 / 0.7);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border-radius: 1rem;
+}
+
+body {
+  @apply bg-slate-900 text-slate-50 min-h-screen antialiased selection:bg-emerald-500/30;
+}
